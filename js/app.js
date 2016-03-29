@@ -41,11 +41,12 @@ var imageWineGlass = imageDataArray.push(new ImageData('img/wine-glass.jpg', 'wi
 function createRandomImage(imgId) {
   var randomNumber = getRandomIntInclusive(0, imageDataArray.length - 1);
   imgId.src = imageDataArray[randomNumber].imgSrc;
+
   imageDataArray[randomNumber].numOfTimesDisplayed++;
   userChooseImage.appendChild(imgId);
 }
 
-function deleteImages(){
+function deleteImages(imgOne, imgTwo, imgThree){
   userChooseImage.removeChild(imgOne);
   userChooseImage.removeChild(imgTwo);
   userChooseImage.removeChild(imgThree);
@@ -53,30 +54,41 @@ function deleteImages(){
 
 var userChooseImage = document.getElementById('userChooseImage');
 var imgOne = document.createElement('img');
-imgOne.className += 'imagesClass';
+imgOne.setAttribute('class', 'imagesClass');
+imgOne.setAttribute('id', ImageData.imgName);
+console.log(imgOne.id, 'this is the imgOne id');
 var imgTwo = document.createElement('img');
-imgTwo.className += 'imagesClass';
+imgTwo.setAttribute('class', 'imagesClass');
+imgTwo.setAttribute('id', ImageData.imgName);
+console.log(imgTwo.id, 'this is the imgTwo id');
 var imgThree = document.createElement('img');
-imgThree.className += 'imagesClass';
+imgThree.setAttribute('class', 'imagesClass');
+imgThree.setAttribute('id', ImageData.imgName);
+console.log(imgThree.id, 'this is the imgThree id');
 
-function displayThreeImages(){
+function displayThreeImages(imgOne, imgTwo, imgThree){
   createRandomImage(imgOne);
   createRandomImage(imgTwo);
   createRandomImage(imgThree);
 }
 
-displayThreeImages();
+displayThreeImages(imgOne, imgTwo, imgThree);
 
 function userImageClickEvent(event){
   globalTotalClicks++;
   console.log('event.target', event.target);
   if (globalTotalClicks < 25) {
-    deleteImages();
-    displayThreeImages();
-  }
-  else {
-    deleteImages();
+    deleteImages(imgOne, imgTwo, imgThree);
+    displayThreeImages(imgOne, imgTwo, imgThree);
+  } else {
+    deleteImages(imgOne, imgTwo, imgThree);
     alert('you clicked 25 times');
+  }
+  var currentImgId = event.target.Id;
+  for(var i = 0; i < imageDataArray.length; i++){
+    if(imageDataArray[i].imgName === currentImgId){
+      imageDataArray[i].numOfClicks++;
+    }
   }
 }
 
