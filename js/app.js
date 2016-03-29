@@ -13,6 +13,10 @@ function ImageData(imgSrc, imgName){
   this.numOfTimesDisplayed = 0;
 }
 
+// ImageData.prototype.imageClicked = function(data){
+//   this.trackUserImageClicks ++;
+// };
+
 var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
 var imageBanana = imageDataArray.push(new ImageData('img/banana.jpg', 'banana'));
 var imageBathroom = imageDataArray.push(new ImageData('img/bathroom.jpg', 'bathroom'));
@@ -36,8 +40,8 @@ var imageWineGlass = imageDataArray.push(new ImageData('img/wine-glass.jpg', 'wi
 
 function createRandomImage(imgId) {
   var randomNumber = getRandomIntInclusive(0, imageDataArray.length - 1);
-  // var randomImage = imageDataArray[randomNumber];
   imgId.src = imageDataArray[randomNumber].imgSrc;
+  imageDataArray[randomNumber].numOfTimesDisplayed++;
   userChooseImage.appendChild(imgId);
 }
 
@@ -49,11 +53,11 @@ function deleteImages(){
 
 var userChooseImage = document.getElementById('userChooseImage');
 var imgOne = document.createElement('img');
-imgOne.className += 'userChooseImage';
+imgOne.className += 'imagesClass';
 var imgTwo = document.createElement('img');
-imgTwo.className += 'userChooseImage';
+imgTwo.className += 'imagesClass';
 var imgThree = document.createElement('img');
-imgThree.className += 'userChooseImage';
+imgThree.className += 'imagesClass';
 
 function displayThreeImages(){
   createRandomImage(imgOne);
@@ -65,7 +69,7 @@ displayThreeImages();
 
 function userImageClickEvent(event){
   globalTotalClicks++;
-  console.log(event.target);
+  console.log('event.target', event.target);
   if (globalTotalClicks < 25) {
     deleteImages();
     displayThreeImages();
@@ -76,23 +80,8 @@ function userImageClickEvent(event){
   }
 }
 
-var trackUserImageClicks = document.getElementsByClassName('userChooseImage');
+var trackUserImageClicks = document.getElementsByClassName('imagesClass');
 
 for (var i = 0; i < trackUserImageClicks.length; i++){
   trackUserImageClicks[i].addEventListener('click', userImageClickEvent);
 }
-
-// function addImages(){
-//   var userChooseImage = document.getElementById('userChooseImage');
-//   var createImgElement1 = document.createElement('imageClick');
-//   var createImgElement2 = document.createElement('imageClick');
-//   var createImgElement3 = document.createElement('imageClick');
-//   for (var i = 0; i < allImages.length; i++){
-//     createImgElement1.textContent = allImages[i];
-//     createImgElement2.textContent = allImages[i];
-//     createImgElement3.textContent = allImages[i];
-//   }
-//   userChooseImage.appendChild(createImgElement1);
-//   userChooseImage.appendChild(createImgElement2);
-//   userChooseImage.appendChild(createImgElement3);
-// }
