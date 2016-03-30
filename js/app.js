@@ -30,6 +30,23 @@ function deleteImages(imgOne, imgTwo, imgThree){
   userChooseImage.removeChild(imgThree);
 }
 
+function displayButtons(){
+  var myButtons = document.getElementById('buttonsHere');
+  var createQuestions = document.createElement('p');
+  var createButtonContinue = document.createElement('button');
+  var createButtonChart = document.createElement('button');
+  createQuestions.textContent = 'You have chosen 25 images. Would you like to choose 10 more or see your results?';
+  createButtonContinue.textContent = '10 more questions';
+  createButtonChart.textContent = 'show my results';
+  createButtonContinue.setAttribute('class', 'buttonsClass');
+  createButtonChart.setAttribute('class', 'buttonsClass');
+  createButtonContinue.setAttribute('id', 'continue');
+  createButtonChart.setAttribute('id', 'chart');
+  myButtons.appendChild(createQuestions);
+  myButtons.appendChild(createButtonContinue);
+  myButtons.appendChild(createButtonChart);
+}
+
 var imageDataArray = [];
 
 var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
@@ -67,7 +84,7 @@ console.log(imgThree);
 displayThreeImages(imgOne, imgTwo, imgThree);
 
 var globalTotalClicks = 0;
-
+var moreQuestions;
 function userImageClickEvent(event){
   globalTotalClicks++;
   console.log('event.target', event.target);
@@ -76,16 +93,31 @@ function userImageClickEvent(event){
       imageDataArray[i].numOfClicks++;
     }
   }
-  if (globalTotalClicks < 25) {
+  deleteImages(imgOne, imgTwo, imgThree);
+  displayThreeImages(imgOne, imgTwo, imgThree);
+  if (globalTotalClicks === 25){
     deleteImages(imgOne, imgTwo, imgThree);
-    displayThreeImages(imgOne, imgTwo, imgThree);
-  } else {
-    deleteImages(imgOne, imgTwo, imgThree);
+    displayButtons();
   }
+  console.log('total clicks: ' + globalTotalClicks);
 }
-
 var trackUserImageClicks = document.getElementsByClassName('imagesClass');
 
 for (var i = 0; i < trackUserImageClicks.length; i++){
   trackUserImageClicks[i].addEventListener('click', userImageClickEvent);
 }
+
+function buttonsClickEvent(event){
+  if (event.target.id === 'continue'){
+    displayThreeImages(imgOne, imgTwo, imgThree);
+  }
+}
+var trackButtonResponses = document.getElementsByClassName('buttonsClass');
+for (var i = 0; i < trackButtonResponses.length; i++){
+  trackButtonResponses[i].addEventListener('click', buttonsClickEvent);
+}
+
+// var canvasChart = document.getElementById('chart');
+// var chartContext = canvasChart.getContext('2d');
+//
+// var myBarChart = new Chart(ctx).Bar(data, options);
