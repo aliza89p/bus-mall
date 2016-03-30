@@ -29,12 +29,16 @@ function deleteImages(imgOne, imgTwo, imgThree){
   userChooseImage.removeChild(imgTwo);
   userChooseImage.removeChild(imgThree);
 }
+var myButtons;
+var createQuestions;
+var createButtonContinue;
+var createButtonChart;
 
 function displayButtons(){
-  var myButtons = document.getElementById('buttonsHere');
-  var createQuestions = document.createElement('p');
-  var createButtonContinue = document.createElement('button');
-  var createButtonChart = document.createElement('button');
+  myButtons = document.getElementById('buttonsHere');
+  createQuestions = document.createElement('p');
+  createButtonContinue = document.createElement('button');
+  createButtonChart = document.createElement('button');
   createQuestions.textContent = 'You have chosen 25 images. Would you like to choose 10 more or see your results?';
   createButtonContinue.textContent = '10 more questions';
   createButtonChart.textContent = 'show my results';
@@ -45,6 +49,12 @@ function displayButtons(){
   myButtons.appendChild(createQuestions);
   myButtons.appendChild(createButtonContinue);
   myButtons.appendChild(createButtonChart);
+}
+
+function deleteButtons(){
+  myButtons.removeChild(createQuestions);
+  myButtons.removeChild(createButtonContinue);
+  myButtons.removeChild(createButtonChart);
 }
 
 var imageDataArray = [];
@@ -85,6 +95,7 @@ displayThreeImages(imgOne, imgTwo, imgThree);
 
 var globalTotalClicks = 0;
 var moreQuestions;
+
 function userImageClickEvent(event){
   globalTotalClicks++;
   console.log('event.target', event.target);
@@ -95,26 +106,26 @@ function userImageClickEvent(event){
   }
   deleteImages(imgOne, imgTwo, imgThree);
   displayThreeImages(imgOne, imgTwo, imgThree);
-  if (globalTotalClicks === 25){
+  if (globalTotalClicks === 5){
     deleteImages(imgOne, imgTwo, imgThree);
     displayButtons();
+    var trackButtonResponses = document.getElementById('continue');
+    trackButtonResponses.addEventListener('click', buttonsClickEvent);
   }
   console.log('total clicks: ' + globalTotalClicks);
 }
-var trackUserImageClicks = document.getElementsByClassName('imagesClass');
 
+var trackUserImageClicks = document.getElementsByClassName('imagesClass');
 for (var i = 0; i < trackUserImageClicks.length; i++){
   trackUserImageClicks[i].addEventListener('click', userImageClickEvent);
 }
 
 function buttonsClickEvent(event){
   if (event.target.id === 'continue'){
+    console.log('continue button working?');
+    deleteButtons();
     displayThreeImages(imgOne, imgTwo, imgThree);
   }
-}
-var trackButtonResponses = document.getElementsByClassName('buttonsClass');
-for (var i = 0; i < trackButtonResponses.length; i++){
-  trackButtonResponses[i].addEventListener('click', buttonsClickEvent);
 }
 
 // var canvasChart = document.getElementById('chart');
