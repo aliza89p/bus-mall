@@ -1,10 +1,5 @@
 var imageDataArray = [];
 var globalTotalClicks = 0;
-var globalImageDisplayedTotal = 0;
-
-function getRandomIntInclusive(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 function ImageData(imgSrc, imgName){
   this.imgSrc = imgSrc;
@@ -13,9 +8,30 @@ function ImageData(imgSrc, imgName){
   this.numOfTimesDisplayed = 0;
 }
 
-// ImageData.prototype.imageClicked = function(data){
-//   this.trackUserImageClicks ++;
-// };
+function getRandomIntInclusive(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function createRandomImage(imgVar) {
+  var randomNumber = getRandomIntInclusive(0, imageDataArray.length - 1);
+  imgVar.src = imageDataArray[randomNumber].imgSrc;
+  imgVar.id = imageDataArray[randomNumber].imgName;
+  imageDataArray[randomNumber].numOfTimesDisplayed++;
+  userChooseImage.appendChild(imgVar);
+  imgVar.setAttribute('id', imgVar.id);
+}
+
+function displayThreeImages(imgOne, imgTwo, imgThree){
+  createRandomImage(imgOne);
+  createRandomImage(imgTwo);
+  createRandomImage(imgThree);
+}
+
+function deleteImages(imgOne, imgTwo, imgThree){
+  userChooseImage.removeChild(imgOne);
+  userChooseImage.removeChild(imgTwo);
+  userChooseImage.removeChild(imgThree);
+}
 
 var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
 var imageBanana = imageDataArray.push(new ImageData('img/banana.jpg', 'banana'));
@@ -38,57 +54,33 @@ var imageUsb = imageDataArray.push(new ImageData('img/usb.gif', 'usb'));
 var imageWaterCan = imageDataArray.push(new ImageData('img/water-can.jpg', 'waterCan'));
 var imageWineGlass = imageDataArray.push(new ImageData('img/wine-glass.jpg', 'wineGlass'));
 
-function createRandomImage(imgId) {
-  var randomNumber = getRandomIntInclusive(0, imageDataArray.length - 1);
-  imgId.src = imageDataArray[randomNumber].imgSrc;
-
-  imageDataArray[randomNumber].numOfTimesDisplayed++;
-  userChooseImage.appendChild(imgId);
-}
-
-function deleteImages(imgOne, imgTwo, imgThree){
-  userChooseImage.removeChild(imgOne);
-  userChooseImage.removeChild(imgTwo);
-  userChooseImage.removeChild(imgThree);
-}
-
 var userChooseImage = document.getElementById('userChooseImage');
 var imgOne = document.createElement('img');
 imgOne.setAttribute('class', 'imagesClass');
-imgOne.setAttribute('id', ImageData.imgName);
-console.log(imgOne.id, 'this is the imgOne id');
+console.log(imgOne);
 var imgTwo = document.createElement('img');
 imgTwo.setAttribute('class', 'imagesClass');
-imgTwo.setAttribute('id', ImageData.imgName);
-console.log(imgTwo.id, 'this is the imgTwo id');
+console.log(imgTwo);
 var imgThree = document.createElement('img');
 imgThree.setAttribute('class', 'imagesClass');
-imgThree.setAttribute('id', ImageData.imgName);
-console.log(imgThree.id, 'this is the imgThree id');
-
-function displayThreeImages(imgOne, imgTwo, imgThree){
-  createRandomImage(imgOne);
-  createRandomImage(imgTwo);
-  createRandomImage(imgThree);
-}
+console.log(imgThree);
 
 displayThreeImages(imgOne, imgTwo, imgThree);
 
 function userImageClickEvent(event){
   globalTotalClicks++;
   console.log('event.target', event.target);
+  for(var i = 0; i < imageDataArray.length; i++){
+    if(imageDataArray[i].imgName === event.target.id){
+      imageDataArray[i].numOfClicks++;
+    }
+  }
   if (globalTotalClicks < 25) {
     deleteImages(imgOne, imgTwo, imgThree);
     displayThreeImages(imgOne, imgTwo, imgThree);
   } else {
     deleteImages(imgOne, imgTwo, imgThree);
     alert('you clicked 25 times');
-  }
-  var currentImgId = event.target.Id;
-  for(var i = 0; i < imageDataArray.length; i++){
-    if(imageDataArray[i].imgName === currentImgId){
-      imageDataArray[i].numOfClicks++;
-    }
   }
 }
 
