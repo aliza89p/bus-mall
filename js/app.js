@@ -70,8 +70,13 @@ function displayChart(){
   }
   var percentClickedDataArray = [];
   for (var i = 0; i < imageDataArray.length; i++){
-    percentClickedDataArray.push((imageDataArray[i].numOfClicks / imageDataArray[i].numOfTimesDisplayed) * 100);
-  }
+    var percentClick = Math.round((imageDataArray[i].numOfClicks / imageDataArray[i].numOfTimesDisplayed) * 100);
+    if (isNaN(percentClick)){
+      percentClickedDataArray.push('0');
+    }else{
+      percentClickedDataArray.push(percentClick);
+    }
+  };
   var data = {
     labels: labelArray,
     datasets: [
