@@ -54,7 +54,7 @@ function deleteButtons(){
 }
 
 function displayChart(){
-  var canvasChart = document.getElementById('chart');
+  var canvasChart = document.getElementById('canvasChartDisplay');
   var chartContext = canvasChart.getContext('2d');
   var labelArray = [];
   for (var i = 0; i < imageDataArray.length; i++){
