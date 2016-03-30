@@ -6,6 +6,7 @@
 - Each time an image is clicked, it is tracked  
 - Each time a user clicks an image, it is tracked  
 - The images stop showing up after 25 total clicks  
+
 ## How:  
 - Created an html file including an empty <div id = "userChooseImage"> element
 - In JavaScript file, created an object constructor called ImageData. This gives every image its own object with properties for the image source, name, number of clicks, and number of times it was displayed  
