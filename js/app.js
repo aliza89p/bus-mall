@@ -106,13 +106,18 @@ function userImageClickEvent(event){
   }
   deleteImages(imgOne, imgTwo, imgThree);
   displayThreeImages(imgOne, imgTwo, imgThree);
-  if (globalTotalClicks === 5){
+  if (globalTotalClicks === 25){
     deleteImages(imgOne, imgTwo, imgThree);
     displayButtons();
     var trackButtonResponses = document.getElementById('continue');
     trackButtonResponses.addEventListener('click', buttonsClickEvent);
+    var trackButtonResponses = document.getElementById('chart');
+    trackButtonResponses.addEventListener('click', buttonsClickEvent);
+    console.log('total clicks: ' + globalTotalClicks);
   }
-  console.log('total clicks: ' + globalTotalClicks);
+  if (globalTotalClicks === 35){
+    deleteImages(imgOne, imgTwo, imgThree);
+  }
 }
 
 var trackUserImageClicks = document.getElementsByClassName('imagesClass');
@@ -125,6 +130,10 @@ function buttonsClickEvent(event){
     console.log('continue button working?');
     deleteButtons();
     displayThreeImages(imgOne, imgTwo, imgThree);
+  }
+  if (event.target.id === 'chart'){
+    console.log('chart button working?');
+    deleteButtons();
   }
 }
 
