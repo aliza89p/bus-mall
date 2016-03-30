@@ -142,10 +142,10 @@ var imgThree = document.createElement('img');
 imgThree.setAttribute('class', 'imagesClass');
 console.log(imgThree);
 
-displayThreeImages(imgOne, imgTwo, imgThree);
-
 var globalTotalClicks = 0;
 var moreQuestions;
+
+displayThreeImages(imgOne, imgTwo, imgThree);
 
 function userImageClickEvent(event){
   globalTotalClicks++;

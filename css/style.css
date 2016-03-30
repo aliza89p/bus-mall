@@ -1,5 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=Oxygen);
+
+body {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Oxygen', sans-serif;
+  color: #666699;
+}
+
 .imagesClass {
   width: 200px;
-  border: 5px solid grey;
+  border: 5px solid black;
+  margin: 5px;
+  padding: 10px;
+  background-color: #666362;
   border-radius: 50px;
 }
