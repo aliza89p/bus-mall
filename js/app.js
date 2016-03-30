@@ -29,10 +29,6 @@ function deleteImages(imgOne, imgTwo, imgThree){
   userChooseImage.removeChild(imgTwo);
   userChooseImage.removeChild(imgThree);
 }
-var myButtons;
-var createQuestions;
-var createButtonContinue;
-var createButtonChart;
 
 function displayButtons(){
   myButtons = document.getElementById('buttonsHere');
@@ -60,32 +56,55 @@ function deleteButtons(){
 function displayChart(){
   var canvasChart = document.getElementById('chart');
   var chartContext = canvasChart.getContext('2d');
+  var labelArray = [];
+  for (var i = 0; i < imageDataArray.length; i++){
+    labelArray.push(imageDataArray[i].imgName);
+  }
+  var displayedDataArray = [];
+  for (var i = 0; i < imageDataArray.length; i++){
+    displayedDataArray.push(imageDataArray[i].numOfTimesDisplayed);
+  }
+  var clickedDataArray = [];
+  for (var i = 0; i < imageDataArray.length; i++){
+    clickedDataArray.push(imageDataArray[i].numOfClicks);
+  }
+  var percentClickedDataArray = [];
+  for (var i = 0; i < imageDataArray.length; i++){
+    percentClickedDataArray.push((imageDataArray[i].numOfClicks / imageDataArray[i].numOfTimesDisplayed) * 100);
+  }
   var data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: labelArray,
     datasets: [
       {
-        label: 'My First dataset',
+        label: 'Times Displayed',
         fillColor: 'rgba(220,220,220,0.5)',
         strokeColor: 'rgba(220,220,220,0.8)',
         highlightFill: 'rgba(220,220,220,0.75)',
         highlightStroke: 'rgba(220,220,220,1)',
-        data: [65, 59, 80, 81, 56, 55, 40]
+        data: displayedDataArray
       },
       {
-        label: 'My Second dataset',
+        label: 'Times Clicked',
         fillColor: 'rgba(151,187,205,0.5)',
         strokeColor: 'rgba(151,187,205,0.8)',
         highlightFill: 'rgba(151,187,205,0.75)',
         highlightStroke: 'rgba(151,187,205,1)',
-        data: [28, 48, 40, 19, 86, 27, 90]
+        data: clickedDataArray
+      },
+      {
+        label: 'Percent of Time Clicked',
+        fillColor: 'rgba(151,187,205,0.5)',
+        strokeColor: 'rgba(151,187,205,0.8)',
+        highlightFill: 'rgba(151,187,205,0.75)',
+        highlightStroke: 'rgba(151,187,205,1)',
+        data: percentClickedDataArray
       }
     ]
   };
   var myBarChart = new Chart(chartContext).Bar(data);
 }
-
 var imageDataArray = [];
-
+var myButtons, createQuestions, createButtonContinue, createButtonChart;
 var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
 var imageBanana = imageDataArray.push(new ImageData('img/banana.jpg', 'banana'));
 var imageBathroom = imageDataArray.push(new ImageData('img/bathroom.jpg', 'bathroom'));
@@ -133,7 +152,7 @@ function userImageClickEvent(event){
   }
   deleteImages(imgOne, imgTwo, imgThree);
   displayThreeImages(imgOne, imgTwo, imgThree);
-  if (globalTotalClicks === 5){
+  if (globalTotalClicks === 25){
     deleteImages(imgOne, imgTwo, imgThree);
     displayButtons();
     var trackButtonResponses = document.getElementById('continue');
@@ -142,12 +161,11 @@ function userImageClickEvent(event){
     trackButtonResponses.addEventListener('click', buttonsClickEvent);
     console.log('total clicks: ' + globalTotalClicks);
   }
-  if (globalTotalClicks === 10){
+  if (globalTotalClicks === 35){
     deleteImages(imgOne, imgTwo, imgThree);
     displayChart();
   }
 }
-
 var trackUserImageClicks = document.getElementsByClassName('imagesClass');
 for (var i = 0; i < trackUserImageClicks.length; i++){
   trackUserImageClicks[i].addEventListener('click', userImageClickEvent);
