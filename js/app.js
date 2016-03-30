@@ -81,7 +81,6 @@ function userImageClickEvent(event){
     displayThreeImages(imgOne, imgTwo, imgThree);
   } else {
     deleteImages(imgOne, imgTwo, imgThree);
-    alert('you clicked 25 times');
   }
 }
 
