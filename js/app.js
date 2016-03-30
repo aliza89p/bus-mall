@@ -57,6 +57,33 @@ function deleteButtons(){
   myButtons.removeChild(createButtonChart);
 }
 
+function displayChart(){
+  var canvasChart = document.getElementById('chart');
+  var chartContext = canvasChart.getContext('2d');
+  var data = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: 'My First dataset',
+        fillColor: 'rgba(220,220,220,0.5)',
+        strokeColor: 'rgba(220,220,220,0.8)',
+        highlightFill: 'rgba(220,220,220,0.75)',
+        highlightStroke: 'rgba(220,220,220,1)',
+        data: [65, 59, 80, 81, 56, 55, 40]
+      },
+      {
+        label: 'My Second dataset',
+        fillColor: 'rgba(151,187,205,0.5)',
+        strokeColor: 'rgba(151,187,205,0.8)',
+        highlightFill: 'rgba(151,187,205,0.75)',
+        highlightStroke: 'rgba(151,187,205,1)',
+        data: [28, 48, 40, 19, 86, 27, 90]
+      }
+    ]
+  };
+  var myBarChart = new Chart(chartContext).Bar(data);
+}
+
 var imageDataArray = [];
 
 var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
@@ -106,7 +133,7 @@ function userImageClickEvent(event){
   }
   deleteImages(imgOne, imgTwo, imgThree);
   displayThreeImages(imgOne, imgTwo, imgThree);
-  if (globalTotalClicks === 25){
+  if (globalTotalClicks === 5){
     deleteImages(imgOne, imgTwo, imgThree);
     displayButtons();
     var trackButtonResponses = document.getElementById('continue');
@@ -115,8 +142,9 @@ function userImageClickEvent(event){
     trackButtonResponses.addEventListener('click', buttonsClickEvent);
     console.log('total clicks: ' + globalTotalClicks);
   }
-  if (globalTotalClicks === 35){
+  if (globalTotalClicks === 10){
     deleteImages(imgOne, imgTwo, imgThree);
+    displayChart();
   }
 }
 
@@ -134,10 +162,6 @@ function buttonsClickEvent(event){
   if (event.target.id === 'chart'){
     console.log('chart button working?');
     deleteButtons();
+    displayChart();
   }
 }
-
-// var canvasChart = document.getElementById('chart');
-// var chartContext = canvasChart.getContext('2d');
-//
-// var myBarChart = new Chart(ctx).Bar(data, options);
