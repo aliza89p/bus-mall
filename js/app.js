@@ -1,6 +1,3 @@
-var imageDataArray = [];
-var globalTotalClicks = 0;
-
 function ImageData(imgSrc, imgName){
   this.imgSrc = imgSrc;
   this.imgName = imgName;
@@ -32,6 +29,8 @@ function deleteImages(imgOne, imgTwo, imgThree){
   userChooseImage.removeChild(imgTwo);
   userChooseImage.removeChild(imgThree);
 }
+
+var imageDataArray = [];
 
 var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
 var imageBanana = imageDataArray.push(new ImageData('img/banana.jpg', 'banana'));
@@ -66,6 +65,8 @@ imgThree.setAttribute('class', 'imagesClass');
 console.log(imgThree);
 
 displayThreeImages(imgOne, imgTwo, imgThree);
+
+var globalTotalClicks = 0;
 
 function userImageClickEvent(event){
   globalTotalClicks++;
