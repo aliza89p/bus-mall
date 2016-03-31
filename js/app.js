@@ -59,33 +59,44 @@ function deleteButtons(){
 }
 
 function saveDataToStorage(){
-  localStorage.setItem('userData', JSON.stringify(savedData));
+  localStorage.setItem('imageData', JSON.stringify(imageDataArray));
 }
 
 function fetchDataFromStorage(){
-  var userData = JSON.parse(localStorage.getItem('userData'));
-  if (userData){
+  imageData = JSON.parse(localStorage.getItem('imageData'));
+  if (imageData){
     console.log('user already has data');
-    savedData = userData;
+    imageDataArray = imageData;
+  }
+  else {
+    var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
+    var imageBanana = imageDataArray.push(new ImageData('img/banana.jpg', 'banana'));
+    var imageBathroom = imageDataArray.push(new ImageData('img/bathroom.jpg', 'bathroom'));
+    var imageBoots = imageDataArray.push(new ImageData('img/boots.jpg', 'boots'));
+    var imageBreakfast = imageDataArray.push(new ImageData('img/breakfast.jpg', 'breakfast'));
+    var imageBubblegum = imageDataArray.push(new ImageData('img/bubblegum.jpg', 'bubblegum'));
+    var imageChair = imageDataArray.push(new ImageData('img/chair.jpg', 'chair'));
+    var imageCthulhu = imageDataArray.push(new ImageData('img/cthulhu.jpg', 'cthulhu'));
+    var imagedogDuck = imageDataArray.push(new ImageData('img/dog-duck.jpg', 'dogDuck'));
+    var imageDragon = imageDataArray.push(new ImageData('img/dragon.jpg', 'dragon'));
+    var imagePen = imageDataArray.push(new ImageData('img/pen.jpg', 'pen'));
+    var imagePetSweep = imageDataArray.push(new ImageData('img/pet-sweep.jpg', 'petSweep'));
+    var imageScissors = imageDataArray.push(new ImageData('img/scissors.jpg', 'scissors'));
+    var imageShark = imageDataArray.push(new ImageData('img/shark.jpg', 'shark'));
+    var imageSweep = imageDataArray.push(new ImageData('img/sweep.png', 'sweep'));
+    var imageTauntaun = imageDataArray.push(new ImageData('img/tauntaun.jpg', 'tauntaun'));
+    var imageUnicorn = imageDataArray.push(new ImageData('img/unicorn.jpg', 'unicorn'));
+    var imageUsb = imageDataArray.push(new ImageData('img/usb.gif', 'usb'));
+    var imageWaterCan = imageDataArray.push(new ImageData('img/water-can.jpg', 'waterCan'));
+    var imageWineGlass = imageDataArray.push(new ImageData('img/wine-glass.jpg', 'wineGlass'));
+    var userChooseImage = document.getElementById('userChooseImage');
   }
 }
 
 var savedData = {
   displayedData: [],
-  clickedData: [],
-  percentClicked: []
+  clickedData: []
 };
-
-
-//
-// function addData(){
-//   for (var i = 0; i < savedData.displayedData[i].length; i++){
-//     var savedDisplayDataArray = savedData.displayedData[i];
-//   }
-//   savedData.displayedData[i].splice([i], 1, displayedDataAdd);
-//
-//   }
-// }
 
 function displayChart(){
   var canvasChart = document.getElementById('canvasChartDisplay');
@@ -113,7 +124,6 @@ function displayChart(){
       percentClickedDataArray.push(percentClick);
     }
   };
-  savedData.percentClicked.push(clickedDataArray);
 
   var data = {
     labels: labelArray,
@@ -148,36 +158,18 @@ function displayChart(){
   saveDataToStorage();
 }
 var imageDataArray = [];
+
 var myButtons = document.getElementById('buttonsHere');
 var trackUserImageClicks = document.getElementsByClassName('imagesClass');
 var createQuestions =  document.createElement('p');
 var createButtonContinue = document.createElement('button');
 var createButtonChart = document.createElement('button');
-var imageBag = imageDataArray.push(new ImageData('img/bag.jpg', 'bag'));
-var imageBanana = imageDataArray.push(new ImageData('img/banana.jpg', 'banana'));
-var imageBathroom = imageDataArray.push(new ImageData('img/bathroom.jpg', 'bathroom'));
-var imageBoots = imageDataArray.push(new ImageData('img/boots.jpg', 'boots'));
-var imageBreakfast = imageDataArray.push(new ImageData('img/breakfast.jpg', 'breakfast'));
-var imageBubblegum = imageDataArray.push(new ImageData('img/bubblegum.jpg', 'bubblegum'));
-var imageChair = imageDataArray.push(new ImageData('img/chair.jpg', 'chair'));
-var imageCthulhu = imageDataArray.push(new ImageData('img/cthulhu.jpg', 'cthulhu'));
-var imagedogDuck = imageDataArray.push(new ImageData('img/dog-duck.jpg', 'dogDuck'));
-var imageDragon = imageDataArray.push(new ImageData('img/dragon.jpg', 'dragon'));
-var imagePen = imageDataArray.push(new ImageData('img/pen.jpg', 'pen'));
-var imagePetSweep = imageDataArray.push(new ImageData('img/pet-sweep.jpg', 'petSweep'));
-var imageScissors = imageDataArray.push(new ImageData('img/scissors.jpg', 'scissors'));
-var imageShark = imageDataArray.push(new ImageData('img/shark.jpg', 'shark'));
-var imageSweep = imageDataArray.push(new ImageData('img/sweep.png', 'sweep'));
-var imageTauntaun = imageDataArray.push(new ImageData('img/tauntaun.jpg', 'tauntaun'));
-var imageUnicorn = imageDataArray.push(new ImageData('img/unicorn.jpg', 'unicorn'));
-var imageUsb = imageDataArray.push(new ImageData('img/usb.gif', 'usb'));
-var imageWaterCan = imageDataArray.push(new ImageData('img/water-can.jpg', 'waterCan'));
-var imageWineGlass = imageDataArray.push(new ImageData('img/wine-glass.jpg', 'wineGlass'));
-var userChooseImage = document.getElementById('userChooseImage');
-var globalTotalClicks = 0;
 
-displayThreeImages();
+var globalTotalClicks = 0;
+var imageData;
+
 fetchDataFromStorage();
+displayThreeImages();
 
 function userImageClickEvent(event){
   globalTotalClicks++;
@@ -201,6 +193,7 @@ function userImageClickEvent(event){
   if (globalTotalClicks === 10){
     displayChart();
   }
+  saveDataToStorage();
 }
 
 function buttonsClickEvent(event){
