@@ -174,7 +174,7 @@ function userImageClickEvent(event){
   }
   deleteImages();
   displayThreeImages();
-  if (globalTotalClicks === 5){
+  if (globalTotalClicks === 25){
     deleteImages();
     displayButtons();
     var trackButtonResponses = document.getElementById('continue');
@@ -183,7 +183,7 @@ function userImageClickEvent(event){
     trackButtonResponses.addEventListener('click', buttonsClickEvent);
     console.log('total clicks: ' + globalTotalClicks);
   }
-  if (globalTotalClicks === 10){
+  if (globalTotalClicks === 35){
     deleteImages();
     displayChart();
   }
