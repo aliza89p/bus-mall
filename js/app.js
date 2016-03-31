@@ -58,6 +58,35 @@ function deleteButtons(){
   myButtons.innerHTML = '';
 }
 
+function saveDataToStorage(){
+  localStorage.setItem('userData', JSON.stringify(savedData));
+}
+
+function fetchDataFromStorage(){
+  var userData = JSON.parse(localStorage.getItem('userData'));
+  if (userData){
+    console.log('user already has data');
+    savedData = userData;
+  }
+}
+
+var savedData = {
+  displayedData: [],
+  clickedData: [],
+  percentClicked: []
+};
+
+
+//
+// function addData(){
+//   for (var i = 0; i < savedData.displayedData[i].length; i++){
+//     var savedDisplayDataArray = savedData.displayedData[i];
+//   }
+//   savedData.displayedData[i].splice([i], 1, displayedDataAdd);
+//
+//   }
+// }
+
 function displayChart(){
   var canvasChart = document.getElementById('canvasChartDisplay');
   var chartContext = canvasChart.getContext('2d');
@@ -69,10 +98,12 @@ function displayChart(){
   for (var i = 0; i < imageDataArray.length; i++){
     displayedDataArray.push(imageDataArray[i].numOfTimesDisplayed);
   }
+  savedData.displayedData.push(displayedDataArray);
   var clickedDataArray = [];
   for (var i = 0; i < imageDataArray.length; i++){
     clickedDataArray.push(imageDataArray[i].numOfClicks);
   }
+  savedData.clickedData.push(clickedDataArray);
   var percentClickedDataArray = [];
   for (var i = 0; i < imageDataArray.length; i++){
     var percentClick = Math.round((imageDataArray[i].numOfClicks / imageDataArray[i].numOfTimesDisplayed) * 100);
@@ -82,6 +113,8 @@ function displayChart(){
       percentClickedDataArray.push(percentClick);
     }
   };
+  savedData.percentClicked.push(clickedDataArray);
+
   var data = {
     labels: labelArray,
     datasets: [
@@ -112,6 +145,7 @@ function displayChart(){
     ]
   };
   var myBarChart = new Chart(chartContext).Bar(data);
+  saveDataToStorage();
 }
 var imageDataArray = [];
 var myButtons = document.getElementById('buttonsHere');
@@ -143,6 +177,7 @@ var userChooseImage = document.getElementById('userChooseImage');
 var globalTotalClicks = 0;
 
 displayThreeImages();
+fetchDataFromStorage();
 
 function userImageClickEvent(event){
   globalTotalClicks++;
@@ -154,7 +189,7 @@ function userImageClickEvent(event){
   }
   deleteImages();
   displayThreeImages();
-  if (globalTotalClicks === 25){
+  if (globalTotalClicks === 5){
     deleteImages();
     displayButtons();
     var trackButtonResponses = document.getElementById('continue');
@@ -163,8 +198,7 @@ function userImageClickEvent(event){
     trackButtonResponses.addEventListener('click', buttonsClickEvent);
     console.log('total clicks: ' + globalTotalClicks);
   }
-  if (globalTotalClicks === 35){
-    deleteImages();
+  if (globalTotalClicks === 10){
     displayChart();
   }
 }
