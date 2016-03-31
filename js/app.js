@@ -184,6 +184,7 @@ function userImageClickEvent(event){
     console.log('total clicks: ' + globalTotalClicks);
   }
   if (globalTotalClicks === 10){
+    deleteImages();
     displayChart();
   }
   saveDataToStorage();
