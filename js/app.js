@@ -9,17 +9,31 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function getThreeRandomIndexesArray(){
+  var randomIndexOne = getRandomIntInclusive(0, imageDataArray.length - 1);
+
+  var randomIndexTwo = randomIndexOne;
+  while (randomIndexTwo === randomIndexOne){
+    randomIndexTwo = getRandomIntInclusive(0, imageDataArray.length - 1);
+  }
+
+  var randomIndexThree = randomIndexOne;
+  while (randomIndexThree === randomIndexOne || randomIndexThree === randomIndexTwo){
+    randomIndexThree = getRandomIntInclusive(0, imageDataArray.length - 1);
+  }
+  return [randomIndexOne, randomIndexTwo, randomIndexThree];
+}
+
 function displayThreeImages() {
-  for (var i = 0; i < 3; i++){
-    var randomNumber;
-    randomNumber = getRandomIntInclusive(0, imageDataArray.length - 1);
+  var threeImageIndexes = getThreeRandomIndexesArray();
+  for (var i = 0; i < threeImageIndexes.length; i++){
     var displayImage = document.createElement('img');
     displayImage.setAttribute('class', 'imagesClass');
-    displayImage.setAttribute('id', imageDataArray[randomNumber].imgName);
-    displayImage.setAttribute('src', imageDataArray[randomNumber].imgSrc);
+    displayImage.setAttribute('id', imageDataArray[threeImageIndexes[i]].imgName);
+    displayImage.setAttribute('src', imageDataArray[threeImageIndexes[i]].imgSrc);
     displayImage.addEventListener('click', userImageClickEvent);
     userChooseImage.appendChild(displayImage);
-    imageDataArray[randomNumber].numOfTimesDisplayed++;
+    imageDataArray[threeImageIndexes[i]].numOfTimesDisplayed++;
   }
 }
 
