@@ -42,7 +42,7 @@ function deleteImages(){
 }
 
 function displayButtons(){
-  createQuestions.textContent = 'You have chosen 25 images. Would you like to choose 10 more or see your results?';
+  createQuestions.textContent = 'You have chosen 25 images. Would you rather choose 10 more images or see your results?';
   createButtonContinue.textContent = '10 more questions';
   createButtonChart.textContent = 'Show my results';
   createButtonContinue.setAttribute('class', 'buttonsClass');
@@ -123,26 +123,26 @@ function displayChart(){
     datasets: [
       {
         label: 'Times Displayed',
-        fillColor: 'rgba(220,220,220,0.5)',
-        strokeColor: 'rgba(220,220,220,0.8)',
-        highlightFill: 'rgba(220,220,220,0.75)',
-        highlightStroke: 'rgba(220,220,220,1)',
+        fillColor: 'rgba(102,153,102,0.5)',
+        strokeColor: 'rgba(102,153,102,0.8)',
+        highlightFill: 'rgba(102,153,102,0.75)',
+        highlightStroke: 'rgba(102,153,102,1)',
         data: displayedDataArray
       },
       {
         label: 'Times Clicked',
-        fillColor: 'rgba(151,187,205,0.5)',
-        strokeColor: 'rgba(151,187,205,0.8)',
-        highlightFill: 'rgba(151,187,205,0.75)',
-        highlightStroke: 'rgba(151,187,205,1)',
+        fillColor: 'rgba(102,102,153,0.5)',
+        strokeColor: 'rgba(102,102,153,0.8)',
+        highlightFill: 'rgba(102,102,153,0.75)',
+        highlightStroke: 'rgba(102,102,153,1)',
         data: clickedDataArray
       },
       {
         label: 'Percent of Time Clicked',
-        fillColor: 'rgba(151,187,205,0.5)',
-        strokeColor: 'rgba(151,187,205,0.8)',
-        highlightFill: 'rgba(151,187,205,0.75)',
-        highlightStroke: 'rgba(151,187,205,1)',
+        fillColor: 'rgba(153,102,153,0.5)',
+        strokeColor: 'rgba(153,102,153,0.8)',
+        highlightFill: 'rgba(153,102,153,0.75)',
+        highlightStroke: 'rgba(153,102,153,1)',
         data: percentClickedDataArray
       }
     ]

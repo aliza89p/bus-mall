@@ -1,32 +1,74 @@
 @import url(https://fonts.googleapis.com/css?family=Oxygen);
 
+html {
+  background-color: grey;
+}
+
 body {
+  padding-top: 5px;
   width: 800px;
   margin: 0 auto;
   text-align: center;
   font-family: 'Oxygen', sans-serif;
-  color: #666362;
+  color: #344152;
+  background-color: white;
+  border-right: 5px solid #C0C0C0;
+  border-left: 5px solid #C0C0C0;
 }
+
 h1 {
+  padding-top: 20px;
   font-size: 35px;
   font-weight: bold;
+  margin-top: -5px;
 }
 h2 {
   font-size: 20px;
+  margin-top: -10px;
+  margin-bottom: 30px;
 }
 p {
-   color: black;
+   margin-top: 100px;
+   margin: 0 auto;
+   width: 450px;
+   font-size: 20px;
+   margin-bottom: 20px;
+   color: rgb(102,102, 153);
  }
 button {
-  background-color: rgb(255, 0, 0);
+  background-color: #669999;
   color: white;
-}
-.imagesClass {
-  width: 200px;
-  border: 5px solid black;
+  border-radius: 15px;
+  padding: 5px 8px;
   margin: 5px;
-  margin-top: 10px;
+}
+button:hover{
+  background-color: rgb(255, 0, 0);
+}
+
+#userChooseImage{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.imagesClass {
+  justify-content: space-around;
+  flex-basis: calc(33% - 10px);
+  max-width: 160px;
+  border: 5px solid black;
+  margin: 10px;
+  margin-top: 20px;
   padding: 10px;
-  background-color: #666699;
   border-radius: 50px;
+  opacity: .7;
+  background-color: #669999;
+}
+
+.imagesClass:hover {
+  transform: scale(1.35);
+  z-index: 3;
+  opacity: 1.0;
+  background-color: #666699;
 }
