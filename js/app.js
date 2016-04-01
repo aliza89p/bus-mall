@@ -96,9 +96,12 @@ function fetchDataFromStorage(){
 function displayChart(){
   var getCanvasChart = document.getElementById('canvasChartDisplay');
   var createCanvas = document.createElement('canvas');
+  var createCanvasTitle = document.createElement('h1');
+  createCanvasTitle.textContent = 'Your Data:';
   createCanvas.setAttribute('width', '700');
   createCanvas.setAttribute('height', '300');
   createCanvas.setAttribute('id', 'canvas');
+  getCanvasChart.appendChild(createCanvasTitle);
   getCanvasChart.appendChild(createCanvas);
   var chartContext = createCanvas.getContext('2d');
 
