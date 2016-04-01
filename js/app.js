@@ -94,8 +94,14 @@ function fetchDataFromStorage(){
 }
 
 function displayChart(){
-  var canvasChart = document.getElementById('canvasChartDisplay');
-  var chartContext = canvasChart.getContext('2d');
+  var getCanvasChart = document.getElementById('canvasChartDisplay');
+  var createCanvas = document.createElement('canvas');
+  createCanvas.setAttribute('width', '700');
+  createCanvas.setAttribute('height', '300');
+  createCanvas.setAttribute('id', 'canvas');
+  getCanvasChart.appendChild(createCanvas);
+  var chartContext = createCanvas.getContext('2d');
+
   var labelArray = [];
   for (var i = 0; i < imageDataArray.length; i++){
     labelArray.push(imageDataArray[i].imgName);
