@@ -26,7 +26,10 @@ h1 {
 h2 {
   font-size: 20px;
   margin-top: -10px;
-  margin-bottom: 30px;
+}
+h3 {
+  font-size: 20px;
+  margin-top: -10px;
 }
 p {
    margin-top: 100px;
@@ -60,7 +63,7 @@ button:hover{
   max-width: 160px;
   border: 5px solid black;
   margin: 5px;
-  margin-top: 25px;
+  margin-top: 40px;
   padding: 15px;
   border-radius: 50px;
   opacity: .7;
