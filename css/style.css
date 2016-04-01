@@ -1,19 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Oxygen);
 
 html {
-  background-color: grey;
+  background-image: url('http://i780.photobucket.com/albums/yy87/Blue__Berry/Backgrounds/i319289786_49201_5.png');
 }
 
 body {
   padding-top: 5px;
+  padding-bottom: 50px;
   width: 800px;
-  margin: 0 auto;
+  margin: 30px auto;
   text-align: center;
   font-family: 'Oxygen', sans-serif;
   color: #344152;
   background-color: white;
-  border-right: 5px solid #C0C0C0;
-  border-left: 5px solid #C0C0C0;
+  border: 8px dotted #C0C0C0;
+  border-radius: 10px;
 }
 
 h1 {
@@ -58,9 +59,9 @@ button:hover{
   flex-basis: calc(33% - 10px);
   max-width: 160px;
   border: 5px solid black;
-  margin: 10px;
-  margin-top: 20px;
-  padding: 10px;
+  margin: 5px;
+  margin-top: 25px;
+  padding: 15px;
   border-radius: 50px;
   opacity: .7;
   background-color: #669999;
